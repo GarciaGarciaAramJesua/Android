@@ -1,39 +1,219 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="16dp">
+    android:fillViewport="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="🔍"
-        android:textSize="48sp"
-        android:layout_marginBottom="16dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Buscar"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="16dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Encuentra lo que buscas aquí"
-        android:textSize="16sp"
-        android:gravity="center"
-        android:layout_marginBottom="24dp"/>
-
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Escribe para buscar..."
-        android:padding="12dp"
-        android:background="@android:drawable/edit_text"/>
+        android:orientation="vertical"
+        android:padding="16dp">
 
-</LinearLayout>
+        <!-- Título principal -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🔘 Demostración de Botones"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Descripción -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Los botones permiten a los usuarios realizar acciones mediante toques. Button es el botón estándar con texto, mientras que ImageButton muestra solo iconos y es ideal para acciones rápidas y interfaces compactas."
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_marginBottom="24dp"
+            android:background="#F0F0F0"
+            android:padding="12dp"
+            android:textColor="#333333"/>
+
+        <!-- Sección de Botones Estándar -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="� Botones Estándar (Button):"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Botón básico -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1. Botón Básico:"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnBasic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Presiona - Botón Básico"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/blue"/>
+
+        <!-- Botón con estilo -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2. Botón con Estilo:"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnStyled"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Botón Estilizado"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/purple_500"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+
+        <!-- Botón de texto -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3. Botón Solo Texto:"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Botón de Texto"
+            android:layout_marginBottom="24dp"
+            style="@style/Widget.Material3.Button.TextButton"/>
+
+        <!-- Sección de ImageButtons -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🎨 Botones de Imagen (ImageButton):"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <ImageButton
+                android:id="@+id/imgBtnHeart"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/ic_launcher_background"
+                android:contentDescription="Botón Corazón"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_launcher_foreground"/>
+
+            <ImageButton
+                android:id="@+id/imgBtnStar"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/ic_launcher_background"
+                android:contentDescription="Botón Estrella"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_launcher_foreground"/>
+
+            <ImageButton
+                android:id="@+id/imgBtnShare"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/ic_launcher_background"
+                android:contentDescription="Botón Compartir"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_launcher_foreground"/>
+
+        </LinearLayout>
+
+        <!-- Demo Interactiva -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🚀 Demo Interactiva:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Contador de clics -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/btnIncrement"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:text="+ 1"
+                android:backgroundTint="@color/purple_500"/>
+
+            <TextView
+                android:id="@+id/tvCounter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:background="#E3F2FD"
+                android:padding="12dp"/>
+
+            <Button
+                android:id="@+id/btnDecrement"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:text="- 1"
+                android:backgroundTint="@color/purple_200"/>
+
+        </LinearLayout>
+
+        <!-- Botón reset -->
+        <Button
+            android:id="@+id/btnReset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🔄 Resetear Contador"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/blue"/>
+
+        <!-- Área de resultados -->
+        <TextView
+            android:id="@+id/tvResults"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="¡Toca cualquier botón para ver la interacción!"
+            android:textSize="14sp"
+            android:background="#E8F5E8"
+            android:padding="16dp"
+            android:layout_marginTop="16dp"
+            android:textColor="#2E7D32"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+</ScrollView>

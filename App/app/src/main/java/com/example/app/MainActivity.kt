@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
         // Resetear todos los botones al estado no seleccionado
         val buttons = listOf(btnHome, btnSearch, btnNotifications, btnProfile, btnSettings)
         buttons.forEach { button ->
-            button.backgroundTintList = getColorStateList(R.color.purple_200)
+            button.backgroundTintList = getColorStateList(R.color.blue)
         }
         
         // Destacar el botón seleccionado

@@ -1,40 +1,217 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#FAFAFA">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="🔔"
-        android:textSize="48sp"
-        android:layout_marginBottom="16dp"/>
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Notificaciones"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="16dp"/>
+        <!-- Título -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="✅ Elementos de Selección"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#2E7D32"
+            android:gravity="center"
+            android:layout_marginBottom="8dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mantente al día con todas las novedades"
-        android:textSize="16sp"
-        android:gravity="center"
-        android:layout_marginBottom="24dp"/>
+        <!-- Explicación -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Los elementos de selección permiten al usuario elegir opciones: CheckBox para múltiples selecciones, RadioButton para una sola opción de un grupo, y Switch para estados on/off simples."
+            android:textSize="14sp"
+            android:textColor="#424242"
+            android:gravity="center"
+            android:layout_marginBottom="24dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="No tienes notificaciones nuevas"
-        android:textSize="14sp"
-        android:textColor="#666666"
-        android:gravity="center"/>
+        <!-- Sección CheckBox -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📋 CheckBox - Selección Múltiple"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#1976D2"
+            android:layout_marginBottom="12dp" />
 
-</LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Selecciona tus preferencias de notificaciones:"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp" />
+
+        <CheckBox
+            android:id="@+id/cbEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="📧 Notificaciones por Email"
+            android:textSize="16sp"
+            android:layout_marginStart="8dp" />
+
+        <CheckBox
+            android:id="@+id/cbPush"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="📱 Notificaciones Push"
+            android:textSize="16sp"
+            android:layout_marginStart="8dp" />
+
+        <CheckBox
+            android:id="@+id/cbSms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="💬 Notificaciones SMS"
+            android:textSize="16sp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Sección RadioButton -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📻 RadioButton - Selección Única"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#1976D2"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Selecciona tu frecuencia de notificaciones preferida:"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp" />
+
+        <RadioGroup
+            android:id="@+id/rgFrequency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp">
+
+            <RadioButton
+                android:id="@+id/rbInstant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⚡ Instantáneas"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/rbHourly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🕐 Cada hora"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/rbDaily"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📅 Diarias"
+                android:textSize="16sp"
+                android:checked="true" />
+
+            <RadioButton
+                android:id="@+id/rbWeekly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📊 Semanales"
+                android:textSize="16sp" />
+
+        </RadioGroup>
+
+        <!-- Sección Switch -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🔄 Switch - Estados On/Off"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#1976D2"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Activa o desactiva funciones generales:"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp" />
+
+        <Switch
+            android:id="@+id/swNotifications"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🔔 Notificaciones Generales"
+            android:textSize="16sp"
+            android:layout_marginStart="8dp"
+            android:checked="true" />
+
+        <Switch
+            android:id="@+id/swVibration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="📳 Vibración"
+            android:textSize="16sp"
+            android:layout_marginStart="8dp" />
+
+        <Switch
+            android:id="@+id/swSound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🔊 Sonido"
+            android:textSize="16sp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Botones de acción -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/btnShowPreferences"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📋 Ver Preferencias"
+                android:backgroundTint="#4CAF50"
+                android:textColor="#FFFFFF"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/btnResetAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔄 Resetear Todo"
+                android:backgroundTint="#FF5722"
+                android:textColor="#FFFFFF"
+                android:layout_marginStart="8dp" />
+
+        </LinearLayout>
+
+        <!-- Área de resultados -->
+        <TextView
+            android:id="@+id/tvResults"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="14sp"
+            android:textColor="#2E7D32"
+            android:background="#E8F5E8"
+            android:padding="16dp"
+            android:visibility="gone"
+            android:lineSpacingExtra="4dp" />
+
+    </LinearLayout>
+
+</ScrollView>
