@@ -56,21 +56,21 @@ La app está diseñada con una arquitectura moderna de Flutter, donde la pantall
 
 ## Screenshots
 
-Se presentan las screenshots de las vistas del proyecto (Se pueden encontrar más en `screenshots/Flutter/`)
+Se presentan las screenshots de las vistas del proyecto (Se pueden encontrar más en `./screenshots/`)
 
 ### Home Screen
-![Home Screen](./screenshots/HomeScreen.png)
+![Home Screen](./screenshots/HomeWidgetScreen1.png)
 
 ### Search Screen
-![Search Screen](./screenshots/SearchScreen.png)
+![Search Screen](./screenshots/SearchWidgetScreen2.png)
 
 ### Notifications Screen
-![Notifications Screen](./screenshots/NotificationsScreen.png)
+![Notifications Screen](./screenshots/NotificationsWidgetScreen3.png)
 
 ### Profile Screen
-![Profile Screen](./screenshots/ProfileScreen.png)
+![Profile Screen](./screenshots/ProfileWidgetScreen4.png)
 
 ### Settings Screen
-![Settings Screen](./screenshots/SettingsScreen.png)
+![Settings Screen](./screenshots/ConfigurationsWidgetScreen5.png)
 
 ---
