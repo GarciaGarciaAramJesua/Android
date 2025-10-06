@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'second_screen.dart';
 
 class Screen1 extends StatefulWidget {
   @override
@@ -164,6 +165,27 @@ class _Screen1State extends State<Screen1> {
                 ),
                 child: Text(
                   'Limpiar Todos los Campos',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              SizedBox(height: 16),
+
+              // Botón para navegar a Second Screen
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SecondScreen()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(
+                    0xFF9C27B0,
+                  ), // Púrpura como SecondScreen
+                  padding: EdgeInsets.symmetric(vertical: 12),
+                ),
+                child: Text(
+                  '⚙️ Ir a Configuración',
                   style: TextStyle(color: Colors.white),
                 ),
               ),

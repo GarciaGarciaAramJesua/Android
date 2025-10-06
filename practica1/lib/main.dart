@@ -4,6 +4,8 @@ import 'screen2.dart';
 import 'screen3.dart';
 import 'screen4.dart';
 import 'screen5.dart';
+import 'second_screen.dart';
+import 'third_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,111 +22,172 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'App Principal'),
+      home: const MainActivity(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+class MainActivity extends StatefulWidget {
+  const MainActivity({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MainActivity> createState() => _MainActivityState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  // Índice del fragmento/pantalla actual seleccionada
+class _MainActivityState extends State<MainActivity> {
+  // Índice del fragmento/pantalla actual seleccionada (Home por defecto)
   int _currentIndex = 0;
 
-  // Lista de widgets/pantallas disponibles
+  // Lista de widgets/pantallas disponibles (fragments equivalentes)
   final List<Widget> _screens = [
-    Screen1(), // Home
-    Screen2(), // Search
-    Screen3(), // Notifications
-    Screen4(), // Profile
-    Screen5(), // Settings
-  ];
-
-  // Lista de títulos para cada pantalla
-  final List<String> _screenTitles = [
-    'Inicio',
-    'Búsqueda',
-    'Notificaciones',
-    'Perfil',
-    'Configuración',
+    Screen1(), // HomeFragment
+    Screen2(), // SearchFragment
+    Screen3(), // NotificationsFragment
+    Screen4(), // ProfileFragment
+    Screen5(), // SettingsFragment
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(_screenTitles[_currentIndex]),
-        centerTitle: true,
-      ),
-      body: IndexedStack(index: _currentIndex, children: _screens),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          color: Color(0xFFF5F5F5), // Fondo gris claro como en Android
-        ),
-        padding: EdgeInsets.all(8.0),
-        child: Row(
-          children: List.generate(5, (index) {
-            return Expanded(
-              child: Container(
-                margin: EdgeInsets.all(2.0), // Márgenes de 2dp como en Android
-                child: TextButton(
-                  onPressed: () => _showFragment(index),
-                  style: TextButton.styleFrom(
-                    backgroundColor: _currentIndex == index
-                        ? Colors
-                              .deepPurple // purple_500 equivalente
-                        : Colors.deepPurple[200], // purple_200 equivalente
-                    foregroundColor: Colors.white,
-                    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 4),
-                    minimumSize: Size(0, 48), // Altura mínima para touch target
+      backgroundColor: Color(0xFFE3F2FD), // Fondo azul claro como en Android
+      body: Column(
+        children: [
+          // Título del MainActivity
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: Color(0xFFBBDEFB), // Azul claro para header
+            ),
+            child: SafeArea(
+              bottom: false,
+              child: Text(
+                '🏠 Activity Principal',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF1565C0), // Azul oscuro
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+
+          // Botones para navegar a otros activities
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Color(0xFF90CAF9), // Azul medio para botones
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: _goToSecondActivity,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFF9C27B0), // Púrpura
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   ),
                   child: Text(
-                    _getButtonText(index),
-                    style: TextStyle(
-                      fontSize: 12, // 12sp como en Android
-                      fontWeight: FontWeight.normal,
-                    ),
-                    textAlign: TextAlign.center,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                    '⚙️ Configuración',
+                    style: TextStyle(color: Colors.white),
                   ),
                 ),
+                SizedBox(width: 16),
+                ElevatedButton(
+                  onPressed: _goToThirdActivity,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFF4CAF50), // Verde
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  ),
+                  child: Text(
+                    '🖼️ Galería',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          // Contenedor de fragments (pantallas)
+          Expanded(
+            child: IndexedStack(index: _currentIndex, children: _screens),
+          ),
+
+          // Barra de navegación inferior (como en Android)
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Color(0xFF42A5F5), // Azul para barra inferior
+            ),
+            child: SafeArea(
+              top: false,
+              child: Row(
+                children: [
+                  _buildNavButton(0, '🏠', 'Home'),
+                  _buildNavButton(1, '🔍', 'Search'),
+                  _buildNavButton(2, '🔔', 'Notifications'),
+                  _buildNavButton(3, '👤', 'Profile'),
+                  _buildNavButton(4, '⚙️', 'Settings'),
+                ],
               ),
-            );
-          }),
-        ),
+            ),
+          ),
+        ],
       ),
     );
   }
 
-  String _getButtonText(int index) {
-    switch (index) {
-      case 0:
-        return 'Home';
-      case 1:
-        return 'Buscar';
-      case 2:
-        return 'Notif.';
-      case 3:
-        return 'Perfil';
-      case 4:
-        return 'Config';
-      default:
-        return '';
-    }
+  Widget _buildNavButton(int index, String emoji, String label) {
+    final isSelected = _currentIndex == index;
+
+    return Expanded(
+      child: Container(
+        margin: EdgeInsets.all(2),
+        child: ElevatedButton(
+          onPressed: () => _showFragment(index),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: isSelected
+                ? Color(0xFF6A1B9A) // purple_500 equivalente para seleccionado
+                : Colors.blue, // Azul para no seleccionado
+            foregroundColor: Colors.white,
+            padding: EdgeInsets.symmetric(vertical: 8),
+            minimumSize: Size(0, 40),
+          ),
+          child: Text(
+            emoji,
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ),
+    );
   }
 
   void _showFragment(int index) {
     setState(() {
       _currentIndex = index;
     });
+  }
+
+  void _goToSecondActivity() {
+    // Navegar a SecondActivity (SecondScreen)
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => SecondScreen()),
+    );
+  }
+
+  void _goToThirdActivity() {
+    // Navegar a ThirdActivity (ThirdScreen) con userName como en Android
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ThirdScreen(userName: "Usuario Principal"),
+      ),
+    );
   }
 }

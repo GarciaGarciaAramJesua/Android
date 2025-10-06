@@ -1,5 +1,6 @@
 package com.example.app
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
@@ -16,6 +17,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnNotifications: Button
     private lateinit var btnProfile: Button
     private lateinit var btnSettings: Button
+    
+    // Botones para navegar a otros activities
+    private lateinit var btnGoToSecond: Button
+    private lateinit var btnGoToThird: Button
 
     // Fragment actual seleccionado
     private var currentFragment: Fragment? = null
@@ -32,6 +37,7 @@ class MainActivity : AppCompatActivity() {
 
         initializeViews()
         setupNavigation()
+        setupActivityNavigation()
         
         // Mostrar HomeFragment por defecto
         if (savedInstanceState == null) {
@@ -46,6 +52,10 @@ class MainActivity : AppCompatActivity() {
         btnNotifications = findViewById(R.id.btn_notifications)
         btnProfile = findViewById(R.id.btn_profile)
         btnSettings = findViewById(R.id.btn_settings)
+        
+        // Botones para otros activities
+        btnGoToSecond = findViewById(R.id.btnGoToSecond)
+        btnGoToThird = findViewById(R.id.btnGoToThird)
     }
 
     private fun setupNavigation() {
@@ -72,6 +82,19 @@ class MainActivity : AppCompatActivity() {
         btnSettings.setOnClickListener {
             showFragment(SettingsFragment.newInstance())
             updateButtonStates(btnSettings)
+        }
+    }
+
+    private fun setupActivityNavigation() {
+        btnGoToSecond.setOnClickListener {
+            val intent = Intent(this, SecondActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnGoToThird.setOnClickListener {
+            val intent = Intent(this, ThirdActivity::class.java)
+            intent.putExtra("userName", "Usuario Principal")
+            startActivity(intent)
         }
     }
 
