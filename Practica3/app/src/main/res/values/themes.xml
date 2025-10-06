@@ -1,0 +1,44 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base IPN Light Theme -->
+    <style name="Base.Theme.IPN" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/ipn_primary</item>
+        <item name="colorPrimaryVariant">@color/ipn_primary_variant</item>
+        <item name="colorSecondary">@color/ipn_secondary</item>
+        <item name="colorSecondaryVariant">@color/ipn_secondary_variant</item>
+        <item name="android:colorBackground">@color/ipn_background</item>
+        <item name="colorSurface">@color/ipn_surface</item>
+        <item name="colorError">@color/ipn_error</item>
+        <item name="colorOnPrimary">@color/ipn_on_primary</item>
+        <item name="colorOnSecondary">@color/ipn_on_secondary</item>
+        <item name="colorOnBackground">@color/ipn_on_background</item>
+        <item name="colorOnSurface">@color/ipn_on_surface</item>
+        <item name="colorOnError">@color/ipn_on_error</item>
+        <item name="android:statusBarColor">@color/ipn_primary</item>
+        <item name="android:navigationBarColor">@color/ipn_primary</item>
+    </style>
+
+    <!-- Base ESCOM Light Theme -->
+    <style name="Base.Theme.ESCOM" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/escom_primary</item>
+        <item name="colorPrimaryVariant">@color/escom_primary_variant</item>
+        <item name="colorSecondary">@color/escom_secondary</item>
+        <item name="colorSecondaryVariant">@color/escom_secondary_variant</item>
+        <item name="android:colorBackground">@color/escom_background</item>
+        <item name="colorSurface">@color/escom_surface</item>
+        <item name="colorError">@color/escom_error</item>
+        <item name="colorOnPrimary">@color/escom_on_primary</item>
+        <item name="colorOnSecondary">@color/escom_on_secondary</item>
+        <item name="colorOnBackground">@color/escom_on_background</item>
+        <item name="colorOnSurface">@color/escom_on_surface</item>
+        <item name="colorOnError">@color/escom_on_error</item>
+        <item name="android:statusBarColor">@color/escom_primary</item>
+        <item name="android:navigationBarColor">@color/escom_primary</item>
+    </style>
+
+    <!-- Default theme (IPN) -->
+    <style name="Theme.Practica3" parent="Base.Theme.IPN" />
+    
+    <!-- Theme aliases for dynamic switching -->
+    <style name="Theme.FileExplorer.IPN" parent="Base.Theme.IPN" />
+    <style name="Theme.FileExplorer.ESCOM" parent="Base.Theme.ESCOM" />
+</resources>
