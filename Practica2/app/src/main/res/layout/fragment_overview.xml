@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:text="Tap logo to watch highlights"
         android:textSize="12sp"
-        android:textColor="#666666"
+        android:textColor="?attr/colorOnSurface"
         android:alpha="0.8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +40,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="The San Francisco 49ers are one of the most successful franchises in NFL history, known for their innovative West Coast offense and championship tradition."
-        android:textColor="#333333"
+        android:textColor="?attr/colorOnBackground"
         android:textSize="16sp"
         android:lineSpacingExtra="4dp"
         android:layout_marginBottom="24dp"
@@ -54,7 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Championships"
-        android:textColor="#FF6B35"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="14sp"
         android:textStyle="bold"
         android:layout_marginTop="16dp"
@@ -66,7 +66,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Super Bowl Championships: 5 (1981, 1984, 1988, 1989, 1994)"
-        android:textColor="#333333"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="16sp"
         android:textStyle="bold"
         android:layout_marginTop="8dp"
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Stadium"
-                android:textColor="#666666"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="14sp" />
 
             <TextView
@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="Levi's Stadium (Santa Clara, CA)"
-                android:textColor="#333333"
+                android:textColor="?attr/colorOnBackground"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -124,7 +124,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Founded"
-                android:textColor="#666666"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="14sp" />
 
             <TextView
@@ -133,7 +133,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="1946"
-                android:textColor="#333333"
+                android:textColor="?attr/colorOnBackground"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -151,7 +151,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Conference"
-                android:textColor="#666666"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="14sp" />
 
             <TextView
@@ -159,7 +159,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="NFC West"
-                android:textColor="#333333"
+                android:textColor="?attr/colorOnBackground"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -176,7 +176,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Team Colors"
-                android:textColor="#666666"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="14sp" />
 
             <LinearLayout
@@ -206,7 +206,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Red &amp; Gold"
-                    android:textColor="#333333"
+                    android:textColor="?attr/colorOnBackground"
                     android:textSize="12sp"
                     android:layout_gravity="center_vertical" />
 

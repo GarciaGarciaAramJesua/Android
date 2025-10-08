@@ -1,10 +1,12 @@
 package com.example.practica2
 
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
@@ -14,7 +16,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
-class SeahawksInfoActivity : AppCompatActivity() {
+class SeahawksInfoActivity : BaseActivity() {
     
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
@@ -23,6 +25,14 @@ class SeahawksInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_seahawks_info)
+
+            // En MainActivity, SecondActivity, etc.
+        val isDark = ThemeManager.isDarkMode(this)
+            findViewById<View>(R.id.main)?.setBackgroundColor(
+            ContextCompat.getColor(this,
+            if (isDark) R.color.dark_background else R.color.light_background
+            )
+        )
         
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())

@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2023 Season Statistics"
-            android:textColor="#333333"
+            android:textColor="?attr/colorOnBackground"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginBottom="8dp"
@@ -29,7 +29,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:cardBackgroundColor="#FF6B35"
+            app:cardBackgroundColor="?attr/colorSurface"
             app:cardCornerRadius="16dp"
             app:cardElevation="4dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Season Record"
-                    android:textColor="#FFFFFF"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="14sp"
                     android:alpha="0.9" />
 
@@ -56,7 +56,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="12-5"
-                    android:textColor="#FFFFFF"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="32sp"
                     android:textStyle="bold"
                     android:layout_marginTop="8dp" />
@@ -84,7 +84,7 @@
                 android:layout_columnWeight="1"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="#FFFFFF"
+                app:cardBackgroundColor="?attr/colorSurface"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="2dp">
 
@@ -99,7 +99,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Points Scored"
-                        android:textColor="#666666"
+                        android:textColor="?attr/colorOnSurface"
                         android:textSize="12sp" />
 
                     <TextView
@@ -116,7 +116,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="per game"
-                        android:textColor="#999999"
+                        android:textColor="?attr/colorOnSurface"
                         android:textSize="10sp" />
 
                 </LinearLayout>
@@ -130,7 +130,7 @@
                 android:layout_columnWeight="1"
                 android:layout_marginStart="8dp"
                 android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="#FFFFFF"
+                app:cardBackgroundColor="?attr/colorSurface"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="2dp">
 
@@ -145,7 +145,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Points Allowed"
-                        android:textColor="#666666"
+                        android:textColor="?attr/colorOnSurface"
                         android:textSize="12sp" />
 
                     <TextView
@@ -176,7 +176,7 @@
                 android:layout_columnWeight="1"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="#FFFFFF"
+                app:cardBackgroundColor="?attr/colorSurface"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="2dp">
 
@@ -191,7 +191,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Offense Rank"
-                        android:textColor="#666666"
+                        android:textColor="?attr/colorOnSurface"
                         android:textSize="12sp" />
 
                     <TextView
@@ -222,7 +222,7 @@
                 android:layout_columnWeight="1"
                 android:layout_marginStart="8dp"
                 android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="#FFFFFF"
+                app:cardBackgroundColor="?attr/colorSurface"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="2dp">
 
@@ -237,7 +237,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Defense Rank"
-                        android:textColor="#666666"
+                        android:textColor="?attr/colorOnSurface"
                         android:textSize="12sp" />
 
                     <TextView
@@ -267,7 +267,7 @@
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
                 android:layout_marginEnd="8dp"
-                app:cardBackgroundColor="#FFFFFF"
+                app:cardBackgroundColor="?attr/colorSurface"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="2dp">
 
@@ -282,7 +282,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Total Yards"
-                        android:textColor="#666666"
+                        android:textColor="?attr/colorOnSurface"
                         android:textSize="12sp" />
 
                     <TextView
@@ -312,7 +312,7 @@
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
                 android:layout_marginStart="8dp"
-                app:cardBackgroundColor="#FFFFFF"
+                app:cardBackgroundColor="?attr/colorSurface"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="2dp">
 
@@ -327,7 +327,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Win Rate"
-                        android:textColor="#666666"
+                        android:textColor="?attr/colorOnSurface"
                         android:textSize="12sp" />
 
                     <TextView
@@ -359,7 +359,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Additional Statistics"
-            android:textColor="#333333"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_marginTop="32dp"
@@ -389,7 +389,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Turnover Differential"
-                    android:textColor="#666666"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="14sp" />
 
                 <TextView
@@ -405,7 +405,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#E0E0E0" />
+                android:background="?attr/colorOnSurface"
+                android:alpha="0.12" />
 
             <!-- Third Down Percentage -->
             <LinearLayout
@@ -419,7 +420,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Third Down Conversion"
-                    android:textColor="#666666"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="14sp" />
 
                 <TextView
@@ -435,7 +436,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#E0E0E0" />
+                android:background="?attr/colorOnSurface"
+                android:alpha="0.12"/>
 
             <!-- Red Zone Efficiency -->
             <LinearLayout
@@ -449,7 +451,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Red Zone Efficiency"
-                    android:textColor="#666666"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="14sp" />
 
                 <TextView

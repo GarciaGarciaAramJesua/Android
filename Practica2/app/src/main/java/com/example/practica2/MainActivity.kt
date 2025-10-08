@@ -8,12 +8,14 @@ import android.view.GestureDetector
 import android.view.MotionEvent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SwitchCompat
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import kotlin.math.abs
 
-class MainActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
+class MainActivity : BaseActivity(), GestureDetector.OnGestureListener {
     
     private lateinit var gestureDetector: GestureDetector
     private val swipeThreshold = 100
@@ -33,6 +35,17 @@ class MainActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+
+        // Configurar el theme switch
+        setupThemeSwitch()
+
+        // En MainActivity, SecondActivity, etc.
+        val isDark = ThemeManager.isDarkMode(this)
+            findViewById<View>(R.id.main)?.setBackgroundColor(
+            ContextCompat.getColor(this,
+            if (isDark) R.color.dark_background else R.color.light_background
+            )
+        )
         
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -41,7 +54,7 @@ class MainActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
         }
 
         val activeIndicator = findViewById<View>(R.id.activeIndicator)
-        activeIndicator.startAnimation(AnimationUtils.loadAnimation(this, R.anim.pulse))
+        activeIndicator?.startAnimation(AnimationUtils.loadAnimation(this, R.anim.pulse))
 
         val card49ers = findViewById<CardView>(R.id.card49ersContainer)
         card49ers.animate().alpha(0f)
@@ -53,6 +66,24 @@ class MainActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
         
         // Configurar navegación por click (opcional, mantiene funcionalidad actual)
         setupTeamNavigation()
+    }
+
+    /**
+     * Configura el switch de cambio de tema
+     */
+    private fun setupThemeSwitch() {
+        val switchTheme = findViewById<SwitchCompat>(R.id.switchTheme)
+        
+        // Establecer el estado inicial del switch basado en las preferencias
+        switchTheme.isChecked = ThemeManager.isDarkMode(this)
+        
+        // Configurar el listener para cambios de tema
+        switchTheme.setOnCheckedChangeListener { _, isChecked ->
+            // Guardar la nueva preferencia
+            ThemeManager.setDarkMode(this, isChecked)
+            // Recrear la activity para aplicar el nuevo tema
+            recreate()
+        }
     }
     
     override fun onTouchEvent(event: MotionEvent): Boolean {

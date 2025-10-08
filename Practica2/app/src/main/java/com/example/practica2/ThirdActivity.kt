@@ -4,13 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.GestureDetector
 import android.view.MotionEvent
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import kotlin.math.abs
 
-class ThirdActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
+class ThirdActivity : BaseActivity(), GestureDetector.OnGestureListener {
     private lateinit var gestureDetector: GestureDetector
     private val swipeThreshold = 100
     private val swipeVelocityThreshold = 100
@@ -29,6 +31,14 @@ class ThirdActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_third) // Layout específico para Rams
+
+            // En MainActivity, SecondActivity, etc.
+        val isDark = ThemeManager.isDarkMode(this)
+            findViewById<View>(R.id.main)?.setBackgroundColor(
+            ContextCompat.getColor(this,
+            if (isDark) R.color.dark_background else R.color.light_background
+            )
+        )
         
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
