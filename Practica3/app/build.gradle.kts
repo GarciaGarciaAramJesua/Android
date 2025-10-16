@@ -95,6 +95,8 @@ dependencies {
     
     // Gson para parsear JSON
     implementation("com.google.code.gson:gson:2.11.0")
+
+    implementation("androidx.compose.material:material-icons-extended:1.6.0")
     
     // Testing
     testImplementation(libs.junit)

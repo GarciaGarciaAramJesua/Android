@@ -175,6 +175,44 @@ class FileRepository(context: Context) {
             }
         }
 
+    /**
+     * Copia un archivo o carpeta resolviendo colisiones de nombres generando sufijos
+     */
+    suspend fun copyFileWithResolvedName(source: File, destinationDir: File): Result<File> =
+        withContext(Dispatchers.IO) {
+            try {
+                // Generar nombre único si existe
+                var targetName = source.name
+                val dot = source.name.lastIndexOf('.')
+                val (base, ext) = if (dot > 0) {
+                    source.name.substring(0, dot) to source.name.substring(dot)
+                } else {
+                    source.name to ""
+                }
+
+                var candidate = File(destinationDir, targetName)
+                var idx = 1
+                while (candidate.exists()) {
+                    targetName = if (ext.isNotEmpty()) {
+                        "$base (copia $idx)$ext"
+                    } else {
+                        "$base (copia $idx)"
+                    }
+                    candidate = File(destinationDir, targetName)
+                    idx++
+                }
+
+                if (source.isDirectory) {
+                    copyDirectory(source, candidate)
+                } else {
+                    source.copyTo(candidate, overwrite = false)
+                }
+                Result.success(candidate)
+            } catch (e: Exception) {
+                Result.failure(e)
+            }
+        }
+
     private fun copyDirectory(source: File, destination: File) {
         if (!destination.exists()) {
             destination.mkdirs()

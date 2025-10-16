@@ -10,6 +10,8 @@ import com.escom.gestordearchivos.domain.FileItem
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.io.File
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 /**
  * ViewModel principal que gestiona el estado de la aplicación
@@ -37,6 +39,15 @@ class FileManagerViewModel(application: Application) : AndroidViewModel(applicat
 
     // Pila de navegación para el botón atrás
     private val navigationStack = mutableListOf<File>()
+
+    // Operación pendiente (clipboard) para copiar/mover
+    sealed class PendingOperation {
+        data class Copy(val source: File) : PendingOperation()
+        data class Move(val source: File) : PendingOperation()
+    }
+
+    private val _pendingOperation = MutableStateFlow<PendingOperation?>(null)
+    val pendingOperation: StateFlow<PendingOperation?> = _pendingOperation.asStateFlow()
 
     // Archivos recientes y favoritos
     val recentFiles: Flow<List<RecentFileEntity>> = repository.getRecentFiles()
@@ -120,6 +131,65 @@ class FileManagerViewModel(application: Application) : AndroidViewModel(applicat
             true
         } else {
             false
+        }
+    }
+
+    // Inicia una operación de copiar
+    fun startCopy(file: File) {
+        _pendingOperation.value = PendingOperation.Copy(file)
+    }
+
+    // Inicia una operación de mover
+    fun startMove(file: File) {
+        _pendingOperation.value = PendingOperation.Move(file)
+    }
+
+    fun cancelPendingOperation() {
+        _pendingOperation.value = null
+    }
+
+    /**
+     * Pegar la operación pendiente en el directorio destino
+     */
+    fun pasteTo(destination: File, onSuccess: () -> Unit, onError: (String) -> Unit) {
+        val op = _pendingOperation.value
+        if (op == null) {
+            onError("No hay operación pendiente")
+            return
+        }
+
+        viewModelScope.launch {
+            if (!destination.exists() || !destination.isDirectory) {
+                onError("Directorio destino inválido")
+                return@launch
+            }
+            if (!destination.canWrite()) {
+                onError("Sin permisos para escribir en la carpeta destino")
+                return@launch
+            }
+
+            when (op) {
+                is PendingOperation.Copy -> {
+                    repository.copyFileWithResolvedName(op.source, destination).fold(
+                        onSuccess = {
+                            loadFiles(destination)
+                            _pendingOperation.value = null
+                            onSuccess()
+                        },
+                        onFailure = { ex -> onError(ex.message ?: "Error al copiar") }
+                    )
+                }
+                is PendingOperation.Move -> {
+                    repository.moveFile(op.source, destination).fold(
+                        onSuccess = {
+                            loadFiles(destination)
+                            _pendingOperation.value = null
+                            onSuccess()
+                        },
+                        onFailure = { ex -> onError(ex.message ?: "Error al mover") }
+                    )
+                }
+            }
         }
     }
 

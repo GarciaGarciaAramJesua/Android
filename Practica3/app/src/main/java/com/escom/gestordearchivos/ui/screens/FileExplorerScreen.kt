@@ -7,6 +7,8 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -69,6 +71,8 @@ fun FileExplorerScreen(
         )
     }
 
+    val pendingOp by viewModel.pendingOperation.collectAsState()
+
     Scaffold(
         topBar = {
             Column {
@@ -96,9 +100,28 @@ fun FileExplorerScreen(
         },
         floatingActionButton = {
             if (!isSearchActive) {
-                CreateFolderFab(
-                    onClick = { showCreateFolderDialog = true }
-                )
+                Column {
+                    if (pendingOp != null) {
+                        ExtendedFloatingActionButton(
+                            text = { Text("Pegar aquí") },
+                            onClick = {
+                                viewModel.pasteTo(
+                                    destination = currentDirectory,
+                                    onSuccess = {
+                                        scope.launch { snackbarHostState.showSnackbar("Pegado correctamente") }
+                                    },
+                                    onError = { err -> scope.launch { snackbarHostState.showSnackbar(err) } }
+                                )
+                            },
+                            icon = { Icon(Icons.Filled.ContentPaste, contentDescription = null) }
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                    }
+
+                    CreateFolderFab(
+                        onClick = { showCreateFolderDialog = true }
+                    )
+                }
             }
         },
         snackbarHost = {
@@ -235,8 +258,8 @@ fun FileExplorerScreen(
                 isFavorite = isFavorite,
                 onDismiss = { showOptionsDialog = false },
                 onRename = { showRenameDialog = true },
-                onCopy = { /* TODO: Implementar copiar */ },
-                onMove = { /* TODO: Implementar mover */ },
+                onCopy = { viewModel.startCopy(file.file); showOptionsDialog = false },
+                onMove = { viewModel.startMove(file.file); showOptionsDialog = false },
                 onDelete = { showDeleteDialog = true },
                 onToggleFavorite = { 
                     viewModel.toggleFavorite(file)
