@@ -90,8 +90,8 @@ com.google.accompanist:accompanist-permissions:0.36.0
 
 1. Clona el repositorio:
 ```bash
-git clone https://github.com/PabloGranados/Moviles.git
-cd Moviles/App-Nativa
+git clone https://github.com/GarciaGarciaAramJesua/Android.git
+cd Android/Practica3
 ```
 
 2. Abre el proyecto en Android Studio
@@ -106,7 +106,7 @@ cd Moviles/App-Nativa
 
 ### Desde APK
 
-1. Descarga el archivo APK desde [Releases](https://github.com/PabloGranados/Moviles/releases)
+1. Descarga el archivo APK desde [Releases](https://github.com/GarciaGarciaAramJesua/Android/Practica3/releases)
 
 2. Habilita la instalación desde fuentes desconocidas:
    - Configuración → Seguridad → Instalar aplicaciones desconocidas
@@ -159,15 +159,10 @@ app/
 
 ## 📸 Capturas de Pantalla
 
-### Tema Guinda IPN
-| Modo Claro | Modo Oscuro |
+### Temas Aplicados
+| Modo Tema Guinda IPN | Modo Tema Azul ESCOM |
 |------------|-------------|
-| ![Guinda Claro](screenshots/guinda_light.png) | ![Guinda Oscuro](screenshots/guinda_dark.png) |
-
-### Tema Azul ESCOM
-| Modo Claro | Modo Oscuro |
-|------------|-------------|
-| ![Azul Claro](screenshots/azul_light.png) | ![Azul Oscuro](screenshots/azul_dark.png) |
+| ![Guinda IPN](screenshots/guinda_main.jpg) | ![Azul ESCOM](screenshots/azul_main.jpg) |
 
 ## 🧪 Pruebas
 
@@ -192,19 +187,12 @@ app/
 
 ## 👨‍💻 Autor
 
-**Pablo Granados**
-- GitHub: [@PabloGranados](https://github.com/PabloGranados)
-- Escuela: ESCOM - IPN
+**Aram García García**
+- GitHub: [@araakgg](https://github.com/GarciaGarciaAramJesua)
 
 ## 📄 Licencia
 
 Este proyecto fue desarrollado con fines educativos para el curso de Desarrollo de Aplicaciones Móviles Nativas.
-
-## 🙏 Agradecimientos
-
-- ESCOM - IPN
-- Instituto Politécnico Nacional
-- Comunidad de desarrolladores de Android
 
 ## 📚 Referencias
 
