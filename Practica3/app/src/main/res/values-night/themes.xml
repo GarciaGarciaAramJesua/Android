@@ -1,41 +1,5 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base IPN Dark Theme -->
-    <style name="Base.Theme.IPN" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/ipn_dark_primary</item>
-        <item name="colorPrimaryVariant">@color/ipn_dark_primary_variant</item>
-        <item name="colorSecondary">@color/ipn_dark_secondary</item>
-        <item name="colorSecondaryVariant">@color/ipn_dark_secondary_variant</item>
-        <item name="android:colorBackground">@color/ipn_dark_background</item>
-        <item name="colorSurface">@color/ipn_dark_surface</item>
-        <item name="colorError">@color/ipn_dark_error</item>
-        <item name="colorOnPrimary">@color/ipn_dark_on_primary</item>
-        <item name="colorOnSecondary">@color/ipn_dark_on_secondary</item>
-        <item name="colorOnBackground">@color/ipn_dark_on_background</item>
-        <item name="colorOnSurface">@color/ipn_dark_on_surface</item>
-        <item name="colorOnError">@color/ipn_dark_on_error</item>
-        <item name="android:statusBarColor">@color/ipn_dark_primary</item>
-        <item name="android:navigationBarColor">@color/ipn_dark_background</item>
-    </style>
-
-    <!-- Base ESCOM Dark Theme -->
-    <style name="Base.Theme.ESCOM" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/escom_dark_primary</item>
-        <item name="colorPrimaryVariant">@color/escom_dark_primary_variant</item>
-        <item name="colorSecondary">@color/escom_dark_secondary</item>
-        <item name="colorSecondaryVariant">@color/escom_dark_secondary_variant</item>
-        <item name="android:colorBackground">@color/escom_dark_background</item>
-        <item name="colorSurface">@color/escom_dark_surface</item>
-        <item name="colorError">@color/escom_dark_error</item>
-        <item name="colorOnPrimary">@color/escom_dark_on_primary</item>
-        <item name="colorOnSecondary">@color/escom_dark_on_secondary</item>
-        <item name="colorOnBackground">@color/escom_dark_on_background</item>
-        <item name="colorOnSurface">@color/escom_dark_on_surface</item>
-        <item name="colorOnError">@color/escom_dark_on_error</item>
-        <item name="android:statusBarColor">@color/escom_dark_primary</item>
-        <item name="android:navigationBarColor">@color/escom_dark_background</item>
-    </style>
-
-    <!-- Theme aliases for dynamic switching -->
-    <style name="Theme.FileExplorer.IPN" parent="Base.Theme.IPN" />
-    <style name="Theme.FileExplorer.ESCOM" parent="Base.Theme.ESCOM" />
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Theme for night mode - Simplified for Jetpack Compose -->
+    <style name="Theme.GestorDeArchivos" parent="android:Theme.Material.NoActionBar" />
 </resources>

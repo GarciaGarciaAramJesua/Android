@@ -1,67 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    
-    <!-- IPN Theme Colors -->
-    <color name="ipn_primary">#6B2E5F</color>
-    <color name="ipn_primary_variant">#4A1F42</color>
-    <color name="ipn_secondary">#8E4B7A</color>
-    <color name="ipn_secondary_variant">#6B2E5F</color>
-    <color name="ipn_background">#FAFAFA</color>
-    <color name="ipn_surface">#FFFFFF</color>
-    <color name="ipn_error">#B00020</color>
-    <color name="ipn_on_primary">#FFFFFF</color>
-    <color name="ipn_on_secondary">#FFFFFF</color>
-    <color name="ipn_on_background">#000000</color>
-    <color name="ipn_on_surface">#000000</color>
-    <color name="ipn_on_error">#FFFFFF</color>
-    
-    <!-- IPN Dark Theme Colors -->
-    <color name="ipn_dark_primary">#8E4B7A</color>
-    <color name="ipn_dark_primary_variant">#6B2E5F</color>
-    <color name="ipn_dark_secondary">#B877A3</color>
-    <color name="ipn_dark_secondary_variant">#8E4B7A</color>
-    <color name="ipn_dark_background">#121212</color>
-    <color name="ipn_dark_surface">#1E1E1E</color>
-    <color name="ipn_dark_error">#CF6679</color>
-    <color name="ipn_dark_on_primary">#FFFFFF</color>
-    <color name="ipn_dark_on_secondary">#000000</color>
-    <color name="ipn_dark_on_background">#FFFFFF</color>
-    <color name="ipn_dark_on_surface">#FFFFFF</color>
-    <color name="ipn_dark_on_error">#000000</color>
-    
-    <!-- ESCOM Theme Colors -->
-    <color name="escom_primary">#003D6D</color>
-    <color name="escom_primary_variant">#002A4A</color>
-    <color name="escom_secondary">#2E5B8A</color>
-    <color name="escom_secondary_variant">#003D6D</color>
-    <color name="escom_background">#FAFAFA</color>
-    <color name="escom_surface">#FFFFFF</color>
-    <color name="escom_error">#B00020</color>
-    <color name="escom_on_primary">#FFFFFF</color>
-    <color name="escom_on_secondary">#FFFFFF</color>
-    <color name="escom_on_background">#000000</color>
-    <color name="escom_on_surface">#000000</color>
-    <color name="escom_on_error">#FFFFFF</color>
-    
-    <!-- ESCOM Dark Theme Colors -->
-    <color name="escom_dark_primary">#4A79A8</color>
-    <color name="escom_dark_primary_variant">#2E5B8A</color>
-    <color name="escom_dark_secondary">#6B95C2</color>
-    <color name="escom_dark_secondary_variant">#4A79A8</color>
-    <color name="escom_dark_background">#121212</color>
-    <color name="escom_dark_surface">#1E1E1E</color>
-    <color name="escom_dark_error">#CF6679</color>
-    <color name="escom_dark_on_primary">#FFFFFF</color>
-    <color name="escom_dark_on_secondary">#000000</color>
-    <color name="escom_dark_on_background">#FFFFFF</color>
-    <color name="escom_dark_on_surface">#FFFFFF</color>
-    <color name="escom_dark_on_error">#000000</color>
-    
-    <!-- Common colors -->
-    <color name="text_hint">#9E9E9E</color>
-    <color name="divider">#E0E0E0</color>
-    <color name="transparent">#00000000</color>
-    <color name="semi_transparent">#80000000</color>
 </resources>

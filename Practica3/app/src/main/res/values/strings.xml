@@ -1,82 +1,15 @@
 <resources>
-    <string name="app_name">Explorador de Archivos</string>
-    
-    <!-- Navigation -->
-    <string name="navigation_back">Atrás</string>
-    <string name="navigation_up">Subir</string>
-    <string name="navigation_home">Inicio</string>
-    
-    <!-- File operations -->
-    <string name="create_folder">Crear carpeta</string>
+    <string name="app_name">Gestor de Archivos</string>
+    <string name="permission_rationale">Esta aplicación necesita permisos de almacenamiento para explorar y gestionar archivos</string>
+    <string name="grant_permission">Otorgar permisos</string>
+    <string name="search">Buscar</string>
+    <string name="settings">Configuración</string>
+    <string name="create_folder">Nueva carpeta</string>
     <string name="rename">Renombrar</string>
     <string name="copy">Copiar</string>
     <string name="move">Mover</string>
     <string name="delete">Eliminar</string>
-    <string name="share">Compartir</string>
     <string name="open_with">Abrir con...</string>
-    
-    <!-- File info -->
-    <string name="file_size">Tamaño: %s</string>
-    <string name="file_modified">Modificado: %s</string>
-    <string name="folder_items">%d elementos</string>
-    
-    <!-- Dialogs -->
-    <string name="folder_name">Nombre de la carpeta</string>
-    <string name="new_name">Nuevo nombre</string>
-    <string name="confirm_delete">¿Eliminar %s?</string>
-    <string name="delete_confirmation">Esta acción no se puede deshacer</string>
-    
-    <!-- Permissions -->
-    <string name="permission_storage_title">Permisos de almacenamiento</string>
-    <string name="permission_storage_message">La aplicación necesita acceso al almacenamiento para mostrar archivos</string>
-    <string name="permission_denied">Permiso denegado</string>
-    <string name="permission_settings">Configuración</string>
-    
-    <!-- Search -->
-    <string name="search_hint">Buscar archivos...</string>
-    <string name="search_results">Resultados de búsqueda</string>
-    <string name="no_results">Sin resultados</string>
-    
-    <!-- Views -->
-    <string name="view_list">Vista de lista</string>
-    <string name="view_grid">Vista de cuadrícula</string>
-    
-    <!-- Themes -->
-    <string name="theme_ipn">Tema Guinda (IPN)</string>
-    <string name="theme_escom">Tema Azul (ESCOM)</string>
-    <string name="theme_auto">Seguir sistema</string>
-    
-    <!-- Storage -->
-    <string name="internal_storage">Almacenamiento interno</string>
-    <string name="external_storage">Almacenamiento externo</string>
-    <string name="recent_files">Archivos recientes</string>
     <string name="favorites">Favoritos</string>
-    
-    <!-- Errors -->
-    <string name="error_file_not_found">Archivo no encontrado</string>
-    <string name="error_access_denied">Acceso denegado</string>
-    <string name="error_operation_failed">Operación fallida</string>
-    <string name="error_corrupted_file">Archivo corrupto</string>
-    
-    <!-- Image viewer -->
-    <string name="zoom_in">Acercar</string>
-    <string name="zoom_out">Alejar</string>
-    <string name="rotate_left">Rotar izquierda</string>
-    <string name="rotate_right">Rotar derecha</string>
-    
-    <!-- Text viewer -->
-    <string name="text_encoding">Codificación: %s</string>
-    <string name="line_count">Líneas: %d</string>
-    
-    <!-- Common -->
-    <string name="ok">Aceptar</string>
-    <string name="cancel">Cancelar</string>
-    <string name="yes">Sí</string>
-    <string name="no">No</string>
-    <string name="loading">Cargando...</string>
-    <string name="empty_folder">Carpeta vacía</string>
-    
-    <!-- Settings -->
-    <string name="settings">Configuración</string>
-    <string name="about">Acerca de</string>
+    <string name="recent_files">Archivos recientes</string>
 </resources>
