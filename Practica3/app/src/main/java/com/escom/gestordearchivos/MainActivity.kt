@@ -27,11 +27,13 @@ import com.escom.gestordearchivos.ui.screens.FileExplorerScreen
 import com.escom.gestordearchivos.ui.screens.FileViewerScreen
 import com.escom.gestordearchivos.ui.theme.AppTheme
 import com.escom.gestordearchivos.ui.theme.FileManagerTheme
+import com.escom.gestordearchivos.data.ThemePreferences
 import com.escom.gestordearchivos.utils.PermissionUtils
 import com.escom.gestordearchivos.viewmodel.FileManagerViewModel
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.MultiplePermissionsState
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
 
@@ -59,21 +61,42 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            var currentTheme by remember { mutableStateOf(AppTheme.GUINDA_IPN) }
-            val darkTheme = isSystemInDarkTheme()
+            // Leer preferencias desde DataStore (si existen)
+            val savedIsLight by ThemePreferences.isLightModeFlow(this@MainActivity).collectAsState(initial = true)
+            val savedTheme by ThemePreferences.selectedThemeFlow(this@MainActivity).collectAsState(initial = AppTheme.GUINDA_IPN)
+
+            var currentTheme by remember { mutableStateOf(savedTheme) }
+            // Evaluar primero si el sistema está en modo oscuro (es un composable)
+            val isSystemDark = isSystemInDarkTheme()
+            // Estado que controla si la app usa modo claro (true) o modo oscuro (false)
+            var isLightMode by remember { mutableStateOf(savedIsLight && !isSystemDark) }
 
             FileManagerTheme(
                 selectedTheme = currentTheme,
-                darkTheme = darkTheme
+                // FileManagerTheme espera `darkTheme`, así que invertimos el booleano
+                darkTheme = !isLightMode
             ) {
                 val hasStoragePermission = PermissionUtils.hasStoragePermissions(this)
 
                 if (hasStoragePermission) {
+                    val coroutineScope = rememberCoroutineScope()
+
                     FileManagerApp(
                         onToggleTheme = {
                             currentTheme = when (currentTheme) {
                                 AppTheme.GUINDA_IPN -> AppTheme.AZUL_ESCOM
                                 AppTheme.AZUL_ESCOM -> AppTheme.GUINDA_IPN
+                            }
+                            // Guardar la preferencia
+                            coroutineScope.launch {
+                                ThemePreferences.saveSelectedTheme(this@MainActivity, currentTheme)
+                            }
+                        },
+                        isLightMode = isLightMode,
+                        onToggleLightMode = {
+                            isLightMode = !isLightMode
+                            coroutineScope.launch {
+                                ThemePreferences.saveIsLightMode(this@MainActivity, isLightMode)
                             }
                         }
                     )
@@ -113,6 +136,8 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun FileManagerApp(
     onToggleTheme: () -> Unit,
+    isLightMode: Boolean,
+    onToggleLightMode: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val navController = rememberNavController()
@@ -129,7 +154,9 @@ fun FileManagerApp(
                     selectedFile = fileItem
                     navController.navigate("viewer")
                 },
-                onToggleTheme = onToggleTheme
+                onToggleTheme = onToggleTheme,
+                isLightMode = isLightMode,
+                onToggleLightMode = onToggleLightMode
             )
         }
 

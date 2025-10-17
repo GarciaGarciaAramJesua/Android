@@ -26,6 +26,9 @@ fun FileManagerTopBar(
     onSearchActiveChange: (Boolean) -> Unit,
     onToggleViewMode: () -> Unit,
     onToggleTheme: () -> Unit,
+    // Nuevo: controla modo claro/oscuro independiente del tema seleccionado
+    isLightMode: Boolean = true,
+    onToggleLightMode: () -> Unit,
     onOpenSettings: () -> Unit,
     isGridView: Boolean,
     modifier: Modifier = Modifier
@@ -56,8 +59,16 @@ fun FileManagerTopBar(
                         contentDescription = "Cambiar vista"
                     )
                 }
+                // Botón para alternar entre colores (Guinda/Azul)
                 IconButton(onClick = onToggleTheme) {
                     Icon(Icons.Default.Palette, contentDescription = "Cambiar tema")
+                }
+                // Botón para alternar modo claro/oscuro manteniendo la paleta actual
+                IconButton(onClick = onToggleLightMode) {
+                    Icon(
+                        imageVector = if (isLightMode) Icons.Default.DarkMode else Icons.Default.LightMode,
+                        contentDescription = "Alternar modo claro/oscuro"
+                    )
                 }
                 IconButton(onClick = onOpenSettings) {
                     Icon(Icons.Default.MoreVert, contentDescription = "Más opciones")

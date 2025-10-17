@@ -30,6 +30,8 @@ fun FileExplorerScreen(
     viewModel: FileManagerViewModel = viewModel(),
     onNavigateToViewer: (FileItem) -> Unit,
     onToggleTheme: () -> Unit,
+    isLightMode: Boolean,
+    onToggleLightMode: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
@@ -87,6 +89,8 @@ fun FileExplorerScreen(
                     },
                     onToggleViewMode = { viewModel.toggleViewMode() },
                     onToggleTheme = onToggleTheme,
+                    isLightMode = isLightMode,
+                    onToggleLightMode = onToggleLightMode,
                     onOpenSettings = { /* TODO: Implementar configuración */ },
                     isGridView = isGridView
                 )
