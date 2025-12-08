@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "58003302405",
+    "project_id": "garciagarciaaramjesua-3a11d",
+    "storage_bucket": "garciagarciaaramjesua-3a11d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:58003302405:android:9952ead2b1189635bad46c",
+        "android_client_info": {
+          "package_name": "com.example.practica5"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvxyHnuHlQaeIEYTcGNmjjl9GNREmBD7k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
