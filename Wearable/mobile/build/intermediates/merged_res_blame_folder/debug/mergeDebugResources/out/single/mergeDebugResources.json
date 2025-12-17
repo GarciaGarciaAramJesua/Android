@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.example.wearable.mobile-debug-54:/mipmap-anydpi_ic_launcher.xml.flat",
+        "source": "com.example.wearable.mobile-main-56:/mipmap-anydpi/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.wearable.mobile-debug-54:/mipmap-anydpi_ic_launcher_round.xml.flat",
+        "source": "com.example.wearable.mobile-main-56:/mipmap-anydpi/ic_launcher_round.xml"
+    }
+]

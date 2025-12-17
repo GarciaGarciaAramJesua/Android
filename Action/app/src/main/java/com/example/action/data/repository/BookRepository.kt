@@ -1,5 +1,6 @@
 package com.example.action.data.repository
 
+import android.util.Log
 import com.example.action.data.Resource
 import com.example.action.data.local.dao.BookDao
 import com.example.action.data.local.dao.FavoriteDao
@@ -41,7 +42,7 @@ class BookRepository(
                             bookId = book.getBookId(),
                             title = book.title,
                             author = book.getAuthor(),
-                            coverUrl = book.getCoverUrl(),
+                            coverUrl = book.coverUrl,
                             firstPublishYear = book.firstPublishYear,
                             isbn = book.isbn?.firstOrNull()
                         )
@@ -63,16 +64,28 @@ class BookRepository(
     suspend fun searchByAuthor(author: String, userId: Int): Resource<List<OpenLibraryBook>> {
         return withContext(Dispatchers.IO) {
             try {
+                Log.d("BookRepository", "🔍 Buscando autor: $author")
                 saveSearchHistory(userId, author, "author")
                 
                 val response = openLibraryService.searchByAuthor(author)
+                Log.d("BookRepository", "📡 Response code: ${response.code()}")
+                
                 if (response.isSuccessful) {
                     val books = response.body()?.docs ?: emptyList()
+                    Log.d("BookRepository", "📚 Libros encontrados: ${books.size}")
+                    
+                    if (books.isNotEmpty()) {
+                        Log.d("BookRepository", "📖 Primer libro: ${books[0].title} por ${books[0].getAuthor()}")
+                    }
+                    
                     Resource.Success(books)
                 } else {
-                    Resource.Error("Error en la búsqueda")
+                    val errorBody = response.errorBody()?.string()
+                    Log.e("BookRepository", "❌ Error response: $errorBody")
+                    Resource.Error("Error en la búsqueda: código ${response.code()}")
                 }
             } catch (e: Exception) {
+                Log.e("BookRepository", "💥 Excepción: ${e.message}", e)
                 Resource.Error("Error de conexión: ${e.message}")
             }
         }
@@ -84,7 +97,8 @@ class BookRepository(
         bookId: String,
         title: String,
         author: String?,
-        coverUrl: String?
+        coverUrl: String?,
+        bookData: String? = null
     ): Resource<String> {
         return withContext(Dispatchers.IO) {
             try {
@@ -98,7 +112,8 @@ class BookRepository(
                     author = author,
                     coverUrl = coverUrl,
                     addedAt = currentTime,
-                    synced = false
+                    synced = false,
+                    bookData = bookData
                 )
                 favoriteDao.insertFavorite(favoriteEntity)
                 

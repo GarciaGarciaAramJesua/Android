@@ -13,5 +13,7 @@ data class FavoriteEntity(
     val author: String?,
     val coverUrl: String?,
     val addedAt: String,
-    val synced: Boolean = false
+    val synced: Boolean = false,
+    // Datos adicionales del libro serializados en JSON
+    val bookData: String? = null
 )

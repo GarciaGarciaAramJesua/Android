@@ -4,13 +4,14 @@
     
     <item
         android:id="@+id/action_admin"
-        android:title="Panel Admin"
+        android:title="Admin Panel"
         android:icon="@android:drawable/ic_menu_manage"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="never"/>
     
     <item
         android:id="@+id/action_logout"
-        android:title="Cerrar Sesión"
+        android:title="Logout"
+        android:icon="@android:drawable/ic_lock_power_off"
         app:showAsAction="never"/>
     
 </menu>

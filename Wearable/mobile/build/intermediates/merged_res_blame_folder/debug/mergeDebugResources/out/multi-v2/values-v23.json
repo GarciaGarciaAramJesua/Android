@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.wearable.mobile-mergeDebugResources-52:/values-v23/values-v23.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\rl9wo\\.gradle\\caches\\8.13\\transforms\\972bf6ae2a80e6459ff0a3ebc121f7bf\\transformed\\work-runtime-2.9.1\\res\\values-v23\\values-v23.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,121",
+                        "endColumns": "65,62",
+                        "endOffsets": "116,179"
+                    }
+                }
+            ]
+        }
+    ]
+}

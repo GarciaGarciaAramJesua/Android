@@ -138,7 +138,7 @@ Deberías ver: `{"message": "API Funcionando"}`
 
 3. **Explorar estadísticas:**
    - Por defecto verás estadísticas generales
-   - Toca "Usuarios" para ver todos los usuarios
+   - Toca "Usuarios" para ver todlos los usuarios
    - Toca "Favoritos" para ver favoritos de todos
    - Toca "Historial" para ver búsquedas de todos
 

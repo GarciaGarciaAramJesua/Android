@@ -49,6 +49,14 @@
             android:screenOrientation="portrait"
             android:parentActivityName=".ui.home.HomeActivity" />
         
+        <!-- BookDetailActivity -->
+        <activity
+            android:name=".ui.detail.BookDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Action"
+            android:parentActivityName=".ui.home.HomeActivity" />
+        
         <!-- MainActivity original (ya no se usa como launcher) -->
         <activity
             android:name=".MainActivity"

@@ -11,9 +11,9 @@ import java.util.concurrent.TimeUnit
 object RetrofitClient {
     
     // IMPORTANTE: Cambia esta URL por la IP de tu máquina donde corre Flask
-    // Si usas el emulador de Android: http://10.0.2.2:5000/
-    // Si usas un dispositivo físico: http://TU_IP_LOCAL:5000/
-    private const val BASE_URL = "http://10.0.2.2:5000/"
+    // Si usas el emulador de Android: http://10.0.2.2:25565/ (para Docker con puerto 25565)
+    // Si usas un dispositivo físico: http://TU_IP_LOCAL:25565/
+    private const val BASE_URL = "http://10.100.74.93:25565/"
     private const val OPEN_LIBRARY_BASE_URL = "https://openlibrary.org/"
     
     private val loggingInterceptor = HttpLoggingInterceptor().apply {

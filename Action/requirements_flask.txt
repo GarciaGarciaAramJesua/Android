@@ -1,0 +1,6 @@
+# Requirements para Flask API con migraciones
+
+Flask==3.0.0
+Flask-SQLAlchemy==3.1.1
+Flask-Bcrypt==1.0.1
+Flask-Migrate==4.0.5

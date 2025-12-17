@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
+from flask_migrate import Migrate
 from datetime import datetime
 import os
 
@@ -13,6 +14,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
+migrate = Migrate(app, db)
 
 # 2. Modelos de Base de Datos
 
@@ -64,18 +66,18 @@ class Favorite(db.Model):
 class SearchHistory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    query = db.Column(db.String(200), nullable=False)
+    search_query = db.Column(db.String(200), nullable=False)
     search_type = db.Column(db.String(50))  # 'book', 'author'
     searched_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
-        return f"SearchHistory('{self.query}')"
+        return f"SearchHistory('{self.search_query}')"
     
     def to_dict(self):
         return {
             'id': self.id,
             'user_id': self.user_id,
-            'query': self.query,
+            'query': self.search_query,
             'search_type': self.search_type,
             'searched_at': self.searched_at.isoformat() if self.searched_at else None
         }
@@ -182,7 +184,7 @@ def add_search_history():
 
     history = SearchHistory(
         user_id=user_id,
-        query=query,
+        search_query=query,
         search_type=search_type
     )
     db.session.add(history)
@@ -215,7 +217,7 @@ def get_recommendations(user_id):
             authors.add(fav.author.lower())
     
     for h in history:
-        search_terms.add(h.query.lower())
+        search_terms.add(h.search_query.lower())
     
     recommendations = {
         'user_id': user_id,
@@ -272,17 +274,22 @@ def get_stats():
     return jsonify(stats), 200
 
 if __name__ == '__main__':
-    # Esto crea las tablas automáticamente si no existen al iniciar
+    # Flask-Migrate gestiona las migraciones automáticamente
+    # Ya no usamos db.create_all() - usar comandos: flask db init, flask db migrate, flask db upgrade
     with app.app_context():
-        db.create_all()
-        
         # Crear usuario admin por defecto si no existe
-        admin = User.query.filter_by(username='admin').first()
-        if not admin:
-            hashed_password = bcrypt.generate_password_hash('admin123').decode('utf-8')
-            admin = User(username='admin', password=hashed_password, is_admin=True)
-            db.session.add(admin)
-            db.session.commit()
-            print("Usuario admin creado - username: admin, password: admin123")
+        try:
+            admin = User.query.filter_by(username='admin').first()
+            if not admin:
+                hashed_password = bcrypt.generate_password_hash('admin123').decode('utf-8')
+                admin = User(username='admin', password=hashed_password, is_admin=True)
+                db.session.add(admin)
+                db.session.commit()
+                print("✅ Usuario admin creado - username: admin, password: admin123")
+            else:
+                print("ℹ️  Usuario admin ya existe")
+        except Exception as e:
+            print(f"⚠️  Advertencia: {e}")
+            print("💡 Ejecuta las migraciones: flask db upgrade")
     
     app.run(host='0.0.0.0', port=5000, debug=True)

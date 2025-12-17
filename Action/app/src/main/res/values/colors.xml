@@ -1,5 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Paleta Principal - Tema Biblioteca Moderna -->
+    
+    <!-- Primary: Tono cálido terracota/burnt sienna -->
+    <color name="primary">#D4927B</color>
+    <color name="primary_dark">#B67860</color>
+    <color name="primary_light">#E8B9A5</color>
+    <color name="primary_variant">#B67860</color>
+    
+    <!-- Secondary: Verde sage/muted green -->
+    <color name="secondary">#8B9D83</color>
+    <color name="secondary_dark">#6B7D63</color>
+    <color name="secondary_light">#ABB9A3</color>
+    
+    <!-- Acento -->
+    <color name="accent">#C9A875</color>
+    <color name="accent_dark">#B08F5F</color>
+    <color name="accent_light">#DCC199</color>
+    <color name="accent_gold">#C9A875</color>
+    <color name="accent_cream">#F4EFE7</color>
+    
+    <!-- Neutrales -->
+    <color name="background">#FAF8F5</color>
+    <color name="background_light">#FAF8F5</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_light">#FFFFFF</color>
+    <color name="surface_variant">#F4EFE7</color>
+    <color name="background_dark">#1A1A1A</color>
+    <color name="surface_dark">#2A2A2A</color>
+    <color name="dark_background">#1A1A1A</color>
+    <color name="dark_surface">#2A2A2A</color>
+    <color name="dark_surface_variant">#3A3A3A</color>
+    
+    <!-- Texto -->
+    <color name="text_primary">#2C2C2C</color>
+    <color name="text_secondary">#6B6B6B</color>
+    <color name="text_tertiary">#9B9B9B</color>
+    <color name="text_hint">#9B9B9B</color>
+    <color name="text_on_primary">#FFFFFF</color>
+    
+    <!-- Divisores -->
+    <color name="divider">#E8E5E0</color>
+    
+    <!-- Estados -->
+    <color name="success">#7BA887</color>
+    <color name="error">#D17B6B</color>
+    <color name="warning">#DAB97A</color>
+    <color name="info">#8B9D83</color>
+    
+    <!-- Básicos -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+    
+    <!-- Gradientes -->
+    <color name="gradient_start">#D4927B</color>
+    <color name="gradient_end">#B67860</color>
 </resources>

@@ -11,6 +11,7 @@ import com.example.action.data.local.entity.FavoriteEntity
 import com.example.action.databinding.ItemFavoriteBinding
 
 class FavoriteAdapter(
+    private val onFavoriteClick: (FavoriteEntity) -> Unit,
     private val onRemoveClick: (FavoriteEntity) -> Unit
 ) : ListAdapter<FavoriteEntity, FavoriteAdapter.FavoriteViewHolder>(FavoriteDiffCallback()) {
     
@@ -35,6 +36,7 @@ class FavoriteAdapter(
                     .error(R.drawable.ic_launcher_foreground)
                     .into(ivCover)
                 
+                root.setOnClickListener { onFavoriteClick(favorite) }
                 btnRemove.setOnClickListener { onRemoveClick(favorite) }
             }
         }

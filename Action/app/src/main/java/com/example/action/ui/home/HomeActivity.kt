@@ -2,6 +2,7 @@ package com.example.action.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -19,7 +20,9 @@ import com.example.action.ui.adapter.BookAdapter
 import com.example.action.ui.adapter.FavoriteAdapter
 import com.example.action.ui.admin.AdminActivity
 import com.example.action.ui.auth.LoginActivity
+import com.example.action.ui.detail.BookDetailActivity
 import com.example.action.util.SessionManager
+import com.google.gson.Gson
 import kotlinx.coroutines.launch
 
 class HomeActivity : AppCompatActivity() {
@@ -30,6 +33,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var bookAdapter: BookAdapter
     private lateinit var favoriteAdapter: FavoriteAdapter
     
+    private val favoriteIds = mutableSetOf<String>()
     private var currentView = "search" // search, favorites, history, recommendations
     
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,16 +85,22 @@ class HomeActivity : AppCompatActivity() {
     private fun setupAdapters() {
         bookAdapter = BookAdapter(
             onBookClick = { book ->
-                Toast.makeText(this, book.title, Toast.LENGTH_SHORT).show()
+                openBookDetail(book)
             },
             onFavoriteClick = { book ->
-                addToFavorites(book)
-            }
+                toggleFavorite(book)
+            },
+            getFavoriteIds = { favoriteIds.toSet() }
         )
         
-        favoriteAdapter = FavoriteAdapter { favorite ->
-            removeFavorite(favorite)
-        }
+        favoriteAdapter = FavoriteAdapter(
+            onFavoriteClick = { favorite ->
+                openFavoriteDetail(favorite)
+            },
+            onRemoveClick = { favorite ->
+                removeFavorite(favorite)
+            }
+        )
         
         binding.rvBooks.apply {
             layoutManager = LinearLayoutManager(this@HomeActivity)
@@ -100,6 +110,11 @@ class HomeActivity : AppCompatActivity() {
         binding.rvFavorites.apply {
             layoutManager = LinearLayoutManager(this@HomeActivity)
             adapter = favoriteAdapter
+        }
+        
+        binding.rvRecommendations.apply {
+            layoutManager = LinearLayoutManager(this@HomeActivity)
+            adapter = bookAdapter
         }
     }
     
@@ -133,8 +148,9 @@ class HomeActivity : AppCompatActivity() {
         binding.layoutSearch.visibility = View.VISIBLE
         binding.rvBooks.visibility = View.VISIBLE
         binding.rvFavorites.visibility = View.GONE
-        binding.tvRecommendations.visibility = View.GONE
-        binding.tvHistory.visibility = View.GONE
+        binding.rvRecommendations.visibility = View.GONE
+        binding.cardRecommendations.visibility = View.GONE
+        binding.cardHistory.visibility = View.GONE
         
         binding.chipSearch.isChecked = true
         binding.chipFavorites.isChecked = false
@@ -147,8 +163,9 @@ class HomeActivity : AppCompatActivity() {
         binding.layoutSearch.visibility = View.GONE
         binding.rvBooks.visibility = View.GONE
         binding.rvFavorites.visibility = View.VISIBLE
-        binding.tvRecommendations.visibility = View.GONE
-        binding.tvHistory.visibility = View.GONE
+        binding.rvRecommendations.visibility = View.GONE
+        binding.cardRecommendations.visibility = View.GONE
+        binding.cardHistory.visibility = View.GONE
         
         binding.chipSearch.isChecked = false
         binding.chipFavorites.isChecked = true
@@ -163,8 +180,9 @@ class HomeActivity : AppCompatActivity() {
         binding.layoutSearch.visibility = View.GONE
         binding.rvBooks.visibility = View.GONE
         binding.rvFavorites.visibility = View.GONE
-        binding.tvRecommendations.visibility = View.GONE
-        binding.tvHistory.visibility = View.VISIBLE
+        binding.rvRecommendations.visibility = View.GONE
+        binding.cardRecommendations.visibility = View.GONE
+        binding.cardHistory.visibility = View.VISIBLE
         
         binding.chipSearch.isChecked = false
         binding.chipFavorites.isChecked = false
@@ -179,8 +197,9 @@ class HomeActivity : AppCompatActivity() {
         binding.layoutSearch.visibility = View.GONE
         binding.rvBooks.visibility = View.GONE
         binding.rvFavorites.visibility = View.GONE
-        binding.tvRecommendations.visibility = View.VISIBLE
-        binding.tvHistory.visibility = View.GONE
+        binding.cardRecommendations.visibility = View.VISIBLE
+        binding.rvRecommendations.visibility = View.GONE
+        binding.cardHistory.visibility = View.GONE
         
         binding.chipSearch.isChecked = false
         binding.chipFavorites.isChecked = false
@@ -213,45 +232,88 @@ class HomeActivity : AppCompatActivity() {
     }
     
     private fun searchByAuthor(author: String) {
+        Log.d("HomeActivity", "🔍 Búsqueda por autor iniciada: '$author'")
+        
+        if (author.isEmpty()) {
+            Toast.makeText(this, "Ingresa un nombre de autor", Toast.LENGTH_SHORT).show()
+            Log.w("HomeActivity", "⚠️ Búsqueda cancelada: campo vacío")
+            return
+        }
+        
         lifecycleScope.launch {
             binding.progressBar.visibility = View.VISIBLE
+            Log.d("HomeActivity", "📡 Llamando al repositorio...")
+            
             val result = bookRepository.searchByAuthor(author, sessionManager.getUserId())
             binding.progressBar.visibility = View.GONE
             
+            Log.d("HomeActivity", "📦 Resultado recibido: ${result::class.simpleName}")
+            
             when (result) {
                 is Resource.Success -> {
+                    Log.d("HomeActivity", "✅ Success - Libros: ${result.data?.size ?: 0}")
+                    
                     if (result.data.isNullOrEmpty()) {
-                        Toast.makeText(this@HomeActivity, "No se encontraron resultados", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@HomeActivity, "No se encontraron resultados para '$author'", Toast.LENGTH_SHORT).show()
+                        bookAdapter.submitList(emptyList())
                     } else {
+                        Toast.makeText(this@HomeActivity, "${result.data.size} libro(s) encontrado(s)", Toast.LENGTH_SHORT).show()
                         bookAdapter.submitList(result.data)
+                        Log.d("HomeActivity", "📚 Lista actualizada en el adaptador")
                     }
                 }
                 is Resource.Error -> {
-                    Toast.makeText(this@HomeActivity, result.message, Toast.LENGTH_SHORT).show()
+                    Log.e("HomeActivity", "❌ Error: ${result.message}")
+                    Toast.makeText(this@HomeActivity, "Error: ${result.message}", Toast.LENGTH_LONG).show()
+                    bookAdapter.submitList(emptyList())
                 }
-                else -> {}
+                else -> {
+                    Log.w("HomeActivity", "⚠️ Resultado desconocido: $result")
+                }
             }
         }
     }
     
-    private fun addToFavorites(book: com.example.action.data.remote.model.OpenLibraryBook) {
+    private fun toggleFavorite(book: com.example.action.data.remote.model.OpenLibraryBook) {
         lifecycleScope.launch {
-            val result = bookRepository.addFavorite(
-                sessionManager.getUserId(),
-                book.getBookId(),
-                book.title,
-                book.getAuthor(),
-                book.getCoverUrl()
-            )
+            val bookId = book.getBookId()
             
-            when (result) {
-                is Resource.Success -> {
-                    Toast.makeText(this@HomeActivity, result.data, Toast.LENGTH_SHORT).show()
+            if (favoriteIds.contains(bookId)) {
+                // Eliminar de favoritos
+                val result = bookRepository.removeFavorite(sessionManager.getUserId(), bookId)
+                when (result) {
+                    is Resource.Success -> {
+                        favoriteIds.remove(bookId)
+                        bookAdapter.notifyDataSetChanged() // Actualizar UI
+                        Toast.makeText(this@HomeActivity, "Eliminado de favoritos", Toast.LENGTH_SHORT).show()
+                    }
+                    is Resource.Error -> {
+                        Toast.makeText(this@HomeActivity, result.message, Toast.LENGTH_SHORT).show()
+                    }
+                    else -> {}
                 }
-                is Resource.Error -> {
-                    Toast.makeText(this@HomeActivity, result.message, Toast.LENGTH_SHORT).show()
+            } else {
+                // Agregar a favoritos
+                val result = bookRepository.addFavorite(
+                    sessionManager.getUserId(),
+                    bookId,
+                    book.title,
+                    book.getAuthor(),
+                    book.coverUrl,
+                    Gson().toJson(book)
+                )
+                
+                when (result) {
+                    is Resource.Success -> {
+                        favoriteIds.add(bookId)
+                        bookAdapter.notifyDataSetChanged() // Actualizar UI
+                        Toast.makeText(this@HomeActivity, "Agregado a favoritos", Toast.LENGTH_SHORT).show()
+                    }
+                    is Resource.Error -> {
+                        Toast.makeText(this@HomeActivity, result.message, Toast.LENGTH_SHORT).show()
+                    }
+                    else -> {}
                 }
-                else -> {}
             }
         }
     }
@@ -260,6 +322,11 @@ class HomeActivity : AppCompatActivity() {
         lifecycleScope.launch {
             bookRepository.getFavorites(sessionManager.getUserId()).collect { favorites ->
                 favoriteAdapter.submitList(favorites)
+                
+                // Actualizar Set de IDs de favoritos
+                favoriteIds.clear()
+                favoriteIds.addAll(favorites.map { it.bookId })
+                bookAdapter.notifyDataSetChanged() // Actualizar estado en las cards
             }
         }
     }
@@ -297,42 +364,99 @@ class HomeActivity : AppCompatActivity() {
     private fun loadRecommendations() {
         lifecycleScope.launch {
             binding.progressBar.visibility = View.VISIBLE
+            binding.cardRecommendations.visibility = View.VISIBLE
+            binding.tvRecommendations.text = "⏳ Cargando recomendaciones personalizadas..."
+            
             val result = bookRepository.getRecommendations(sessionManager.getUserId())
             binding.progressBar.visibility = View.GONE
             
             when (result) {
                 is Resource.Success -> {
                     val recommendations = result.data!!
-                    val text = buildString {
-                        append("Basado en tus favoritos y búsquedas:\n\n")
+                    val allBooks = mutableListOf<com.example.action.data.remote.model.OpenLibraryBook>()
+                    
+                    // Buscar libros de autores recomendados
+                    if (recommendations.recommendedAuthors.isNotEmpty()) {
+                        binding.tvRecommendations.text = "Searching books from recommended authors..."
                         
-                        if (recommendations.recommendedAuthors.isNotEmpty()) {
-                            append("Autores recomendados:\n")
-                            recommendations.recommendedAuthors.forEach { 
-                                append("• $it\n") 
+                        recommendations.recommendedAuthors.take(3).forEach { author ->
+                            val booksResult = bookRepository.searchByAuthor(author, sessionManager.getUserId())
+                            if (booksResult is Resource.Success) {
+                                allBooks.addAll(booksResult.data?.take(5) ?: emptyList())
                             }
-                            append("\n")
-                        }
-                        
-                        if (recommendations.recentSearches.isNotEmpty()) {
-                            append("Búsquedas recientes:\n")
-                            recommendations.recentSearches.forEach { 
-                                append("• $it\n") 
-                            }
-                        }
-                        
-                        if (recommendations.recommendedAuthors.isEmpty() && recommendations.recentSearches.isEmpty()) {
-                            append("Aún no tienes favoritos o búsquedas para generar recomendaciones.")
                         }
                     }
-                    binding.tvRecommendations.text = text
+                    
+                    // Buscar libros de búsquedas recientes
+                    if (recommendations.recentSearches.isNotEmpty() && allBooks.size < 10) {
+                        recommendations.recentSearches.take(2).forEach { search ->
+                            val booksResult = bookRepository.searchBooks(search, sessionManager.getUserId())
+                            if (booksResult is Resource.Success) {
+                                allBooks.addAll(booksResult.data?.take(3) ?: emptyList())
+                            }
+                        }
+                    }
+                    
+                    // Eliminar duplicados por key
+                    val uniqueBooks = allBooks.distinctBy { it.key }.take(20)
+                    
+                    if (uniqueBooks.isNotEmpty()) {
+                        binding.cardRecommendations.visibility = View.GONE
+                        binding.rvRecommendations.visibility = View.VISIBLE
+                        bookAdapter.submitList(uniqueBooks)
+                    } else {
+                        binding.cardRecommendations.visibility = View.VISIBLE
+                        binding.rvRecommendations.visibility = View.GONE
+                        binding.tvRecommendations.text = buildString {
+                            append("You don't have recommendations available yet.\n\n")
+                            append("Add favorites and search for books to get personalized recommendations.")
+                        }
+                    }
                 }
                 is Resource.Error -> {
-                    binding.tvRecommendations.text = result.message
+                    binding.cardRecommendations.visibility = View.VISIBLE
+                    binding.rvRecommendations.visibility = View.GONE
+                    val errorText = "Error loading recommendations\n\n${result.message}\n\nCheck your internet connection."
+                    binding.tvRecommendations.text = errorText
+                    Toast.makeText(this@HomeActivity, result.message, Toast.LENGTH_SHORT).show()
                 }
                 else -> {}
             }
         }
+    }
+    
+    private fun openBookDetail(book: com.example.action.data.remote.model.OpenLibraryBook) {
+        val intent = Intent(this, BookDetailActivity::class.java)
+        intent.putExtra("book_data", Gson().toJson(book))
+        startActivity(intent)
+    }
+    
+    private fun openFavoriteDetail(favorite: com.example.action.data.local.entity.FavoriteEntity) {
+        val intent = Intent(this, BookDetailActivity::class.java)
+        
+        // Si tiene los datos completos del libro, usar esos
+        if (!favorite.bookData.isNullOrBlank()) {
+            intent.putExtra("book_data", favorite.bookData)
+        } else {
+            // Si no, crear un objeto básico con la información disponible
+            val basicBook = com.example.action.data.remote.model.OpenLibraryBook(
+                key = "/works/${favorite.bookId}",
+                title = favorite.title,
+                authorName = favorite.author?.let { listOf(it) },
+                firstPublishYear = null,
+                coverId = null,
+                isbn = null,
+                publisher = null,
+                language = null,
+                subject = null,
+                firstSentence = null,
+                numberOfPages = null,
+                directCoverUrl = favorite.coverUrl // Usar la URL guardada en el favorito
+            )
+            intent.putExtra("book_data", Gson().toJson(basicBook))
+        }
+        
+        startActivity(intent)
     }
     
     private fun logout() {

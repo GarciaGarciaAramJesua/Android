@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 5000
 
 # Comando para ejecutar la app
-CMD ["python", "app.py"]
+CMD ["sh", "-c", "flask db upgrade && python app.py"]

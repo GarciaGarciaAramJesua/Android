@@ -1,7 +1,33 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Action" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    <!-- Base application theme for dark mode. -->
+    <style name="Base.Theme.Action" parent="Theme.Material3.Dark.NoActionBar">
+        <!-- Colores principales -->
+        <item name="colorPrimary">@color/primary_light</item>
+        <item name="colorPrimaryVariant">@color/primary</item>
+        <item name="colorOnPrimary">@color/black</item>
+        
+        <!-- Colores secundarios -->
+        <item name="colorSecondary">@color/accent_light</item>
+        <item name="colorSecondaryVariant">@color/accent</item>
+        <item name="colorOnSecondary">@color/black</item>
+        
+        <!-- Colores de fondo -->
+        <item name="android:colorBackground">@color/dark_background</item>
+        <item name="colorSurface">@color/dark_surface</item>
+        <item name="colorOnBackground">@color/white</item>
+        <item name="colorOnSurface">@color/white</item>
+        
+        <!-- Estados -->
+        <item name="colorError">@color/error</item>
+        <item name="colorOnError">@color/black</item>
+        
+        <!-- Formas redondeadas modernas -->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Action.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Action.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Action.LargeComponent</item>
+        
+        <!-- Status bar -->
+        <item name="android:statusBarColor">@color/dark_surface</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
     </style>
 </resources>

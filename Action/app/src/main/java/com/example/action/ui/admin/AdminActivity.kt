@@ -133,28 +133,32 @@ class AdminActivity : AppCompatActivity() {
     private fun loadAllHistory() {
         lifecycleScope.launch {
             binding.progressBar.visibility = View.VISIBLE
+            binding.tvContent.text = "Cargando historial..."
+            
             when (val result = adminRepository.getAllSearchHistory()) {
                 is Resource.Success -> {
                     val history = result.data!!
                     val text = buildString {
-                        append("Total de búsquedas: ${history.size}\n\n")
-                        history.forEach { h ->
-                            append("Usuario: ${h["username"]}\n")
-                            append("Búsqueda: ${h["query"]}\n")
-                            append("Tipo: ${h["search_type"]}\n")
-                            append("Fecha: ${h["searched_at"]}\n")
-                            append("─────────────────────\n")
+                        append("🔍 HISTORIAL DE BÚSQUEDAS\n\n")
+                        append("Total: ${history.size} búsqueda(s)\n\n")
+                        
+                        if (history.isNotEmpty()) {
+                            history.forEachIndexed { index, h ->
+                                append("${index + 1}. ")
+                                append("${h["username"]} buscó '${h["query"]}'\n")
+                                append("   Tipo: ${h["search_type"]} | ${h["searched_at"]}\n")
+                                if (index < history.size - 1) append("\n")
+                            }
+                        } else {
+                            append("No hay búsquedas registradas aún.")
                         }
                     }
-                    binding.tvContent.text = if (history.isEmpty()) {
-                        "No hay historial de búsquedas"
-                    } else {
-                        text
-                    }
+                    binding.tvContent.text = text
                 }
                 is Resource.Error -> {
+                    val errorMsg = "Error al cargar historial:\n${result.message}"
+                    binding.tvContent.text = errorMsg
                     Toast.makeText(this@AdminActivity, result.message, Toast.LENGTH_SHORT).show()
-                    binding.tvContent.text = "Error al cargar historial"
                 }
                 else -> {}
             }
@@ -165,31 +169,40 @@ class AdminActivity : AppCompatActivity() {
     private fun loadStats() {
         lifecycleScope.launch {
             binding.progressBar.visibility = View.VISIBLE
+            binding.tvContent.text = "Cargando estadísticas..."
+            
             when (val result = adminRepository.getStats()) {
                 is Resource.Success -> {
                     val stats = result.data!!
                     val text = buildString {
-                        append("📊 ESTADÍSTICAS GENERALES\n\n")
-                        append("👥 Total de usuarios: ${stats.totalUsers}\n\n")
-                        append("❤️ Total de favoritos: ${stats.totalFavorites}\n\n")
-                        append("🔍 Total de búsquedas: ${stats.totalSearches}\n\n")
+                        append("📊 ESTADÍSTICAS DEL SISTEMA\n")
+                        append("═══════════════════════════\n\n")
                         
-                        val avgFavoritesPerUser = if (stats.totalUsers > 0) {
-                            stats.totalFavorites.toFloat() / stats.totalUsers
-                        } else 0f
+                        append("👥 Usuarios registrados\n")
+                        append("   ${stats.totalUsers} usuario(s)\n\n")
                         
-                        val avgSearchesPerUser = if (stats.totalUsers > 0) {
-                            stats.totalSearches.toFloat() / stats.totalUsers
-                        } else 0f
+                        append("❤️ Favoritos guardados\n")
+                        append("   ${stats.totalFavorites} libro(s)\n\n")
                         
-                        append("📈 Promedio favoritos/usuario: ${"%.2f".format(avgFavoritesPerUser)}\n\n")
-                        append("📈 Promedio búsquedas/usuario: ${"%.2f".format(avgSearchesPerUser)}\n")
+                        append("🔍 Búsquedas realizadas\n")
+                        append("   ${stats.totalSearches} búsqueda(s)\n\n")
+                        
+                        if (stats.totalUsers > 0) {
+                            val avgFavoritesPerUser = stats.totalFavorites.toFloat() / stats.totalUsers
+                            val avgSearchesPerUser = stats.totalSearches.toFloat() / stats.totalUsers
+                            
+                            append("═══════════════════════════\n")
+                            append("📈 PROMEDIOS POR USUARIO\n\n")
+                            append("   Favoritos: ${"%.1f".format(avgFavoritesPerUser)}\n")
+                            append("   Búsquedas: ${"%.1f".format(avgSearchesPerUser)}\n")
+                        }
                     }
                     binding.tvContent.text = text
                 }
                 is Resource.Error -> {
+                    val errorMsg = "❌ Error al cargar estadísticas\n\n${result.message}\n\nVerifica la conexión con el servidor."
+                    binding.tvContent.text = errorMsg
                     Toast.makeText(this@AdminActivity, result.message, Toast.LENGTH_SHORT).show()
-                    binding.tvContent.text = "Error al cargar estadísticas"
                 }
                 else -> {}
             }
