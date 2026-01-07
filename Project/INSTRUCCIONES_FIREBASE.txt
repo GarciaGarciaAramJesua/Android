@@ -1,0 +1,1 @@
+Debes crear un archivo google-services.json en la carpeta app/ de tu proyecto Android.

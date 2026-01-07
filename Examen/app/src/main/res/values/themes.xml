@@ -1,0 +1,35 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Tema Base IPN (Guinda) - Modo Claro -->
+    <style name="Base.Theme.IPN" parent="Theme.Material3.DayNight">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/ipn_primary</item>
+        <item name="colorPrimaryDark">@color/ipn_primary_dark</item>
+        <item name="colorPrimaryVariant">@color/ipn_primary_light</item>
+        <item name="colorSecondary">@color/ipn_secondary</item>
+        <item name="android:colorBackground">@color/ipn_background</item>
+        <item name="colorSurface">@color/ipn_surface</item>
+        <item name="colorOnPrimary">@color/ipn_on_primary</item>
+        <item name="colorOnBackground">@color/ipn_on_background</item>
+    </style>
+    
+    <!-- Tema Base ESCOM (Azul) - Modo Claro -->
+    <style name="Base.Theme.ESCOM" parent="Theme.Material3.DayNight">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/escom_primary</item>
+        <item name="colorPrimaryDark">@color/escom_primary_dark</item>
+        <item name="colorPrimaryVariant">@color/escom_primary_light</item>
+        <item name="colorSecondary">@color/escom_secondary</item>
+        <item name="android:colorBackground">@color/escom_background</item>
+        <item name="colorSurface">@color/escom_surface</item>
+        <item name="colorOnPrimary">@color/escom_on_primary</item>
+        <item name="colorOnBackground">@color/escom_on_background</item>
+    </style>
+    
+    <!-- Tema IPN por defecto -->
+    <style name="Theme.Examen" parent="Base.Theme.IPN" />
+    
+    <!-- Tema ESCOM alternativo -->
+    <style name="Theme.Examen.ESCOM" parent="Base.Theme.ESCOM" />
+</resources>

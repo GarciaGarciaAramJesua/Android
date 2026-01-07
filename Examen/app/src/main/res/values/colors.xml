@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <!-- Tema IPN Guinda - Modo Claro -->
+    <color name="ipn_primary">#8B1538</color>
+    <color name="ipn_primary_dark">#6B0F2A</color>
+    <color name="ipn_primary_light">#AB1A45</color>
+    <color name="ipn_secondary">#C4A04A</color>
+    <color name="ipn_background">#FFFFFF</color>
+    <color name="ipn_surface">#F5F5F5</color>
+    <color name="ipn_on_primary">#FFFFFF</color>
+    <color name="ipn_on_background">#1A1A1A</color>
+    
+    <!-- Tema IPN Guinda - Modo Oscuro -->
+    <color name="ipn_primary_dark_mode">#AB1A45</color>
+    <color name="ipn_primary_dark_dark_mode">#8B1538</color>
+    <color name="ipn_background_dark_mode">#121212</color>
+    <color name="ipn_surface_dark_mode">#1E1E1E</color>
+    <color name="ipn_on_primary_dark_mode">#FFFFFF</color>
+    <color name="ipn_on_background_dark_mode">#E1E1E1</color>
+    
+    <!-- Tema ESCOM Azul - Modo Claro -->
+    <color name="escom_primary">#0A3D62</color>
+    <color name="escom_primary_dark">#06283D</color>
+    <color name="escom_primary_light">#0E5287</color>
+    <color name="escom_secondary">#47B5FF</color>
+    <color name="escom_background">#FFFFFF</color>
+    <color name="escom_surface">#F5F5F5</color>
+    <color name="escom_on_primary">#FFFFFF</color>
+    <color name="escom_on_background">#1A1A1A</color>
+    
+    <!-- Tema ESCOM Azul - Modo Oscuro -->
+    <color name="escom_primary_dark_mode">#0E5287</color>
+    <color name="escom_primary_dark_dark_mode">#0A3D62</color>
+    <color name="escom_background_dark_mode">#121212</color>
+    <color name="escom_surface_dark_mode">#1E1E1E</color>
+    <color name="escom_on_primary_dark_mode">#FFFFFF</color>
+    <color name="escom_on_background_dark_mode">#E1E1E1</color>
+</resources>

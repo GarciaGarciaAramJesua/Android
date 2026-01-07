@@ -40,6 +40,8 @@ android {
 }
 
 dependencies {
+    implementation(libs.core.ktx)
+    implementation(libs.appcompat)
     implementation(platform(libs.compose.bom))
     implementation(libs.ui)
     implementation(libs.ui.graphics)
@@ -51,6 +53,9 @@ dependencies {
     implementation(libs.work.runtime.ktx)
     implementation(libs.datastore.preferences)
     implementation(libs.navigation.compose)
+    
+    // Material3 para temas XML
+    implementation("com.google.android.material:material:1.11.0")
     
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)

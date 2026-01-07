@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">GPS Tracker</string>
+    
+    <!-- Main Activity -->
+    <string name="start_tracking">Iniciar Rastreo</string>
+    <string name="stop_tracking">Detener Rastreo</string>
+    <string name="view_history">Ver Historial</string>
+    <string name="current_location">Ubicacion Actual</string>
+    <string name="latitude">Latitud: %s</string>
+    <string name="longitude">Longitud: %s</string>
+    <string name="accuracy">Precision: %.2f metros</string>
+    <string name="update_interval">Intervalo de Actualizacion</string>
+    <string name="interval_10s">10 segundos</string>
+    <string name="interval_60s">60 segundos</string>
+    <string name="interval_5m">5 minutos</string>
+    <string name="show_notification">Mostrar Notificacion</string>
+    <string name="tracking_active">Rastreo activo</string>
+    <string name="tracking_inactive">Rastreo inactivo</string>
+    <string name="theme_selector">Seleccionar Tema</string>
+    <string name="theme_ipn">Tema IPN (Guinda)</string>
+    <string name="theme_escom">Tema ESCOM (Azul)</string>
+    
+    <!-- History Activity -->
+    <string name="history_title">Historial de Ubicaciones</string>
+    <string name="clear_history">Limpiar Historial</string>
+    <string name="no_locations">No hay ubicaciones registradas</string>
+    <string name="location_count">Total: %d ubicaciones</string>
+    <string name="confirm_clear">¿Seguro que deseas eliminar todo el historial?</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    
+    <!-- Permissions -->
+    <string name="permission_required">Permisos Requeridos</string>
+    <string name="location_permission_rationale">Esta aplicacion necesita acceso a tu ubicacion para rastrear tu posicion.</string>
+    <string name="background_permission_rationale">Para rastrear tu ubicacion en segundo plano, necesitamos el permiso de ubicacion en segundo plano.</string>
+    <string name="notification_permission_rationale">Para mostrar notificaciones del rastreo, necesitamos permiso de notificaciones.</string>
+    <string name="grant_permission">Otorgar Permiso</string>
+    <string name="permission_denied">Permisos denegados. La aplicacion no puede funcionar correctamente.</string>
+</resources>
