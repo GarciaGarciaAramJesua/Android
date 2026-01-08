@@ -22,13 +22,13 @@ La aplicación **Biblioteca Digital** es una solución completa de gestión de l
 - Configurar `BASE_URL` en `RetrofitClient.kt` según el entorno (emulador: `10.0.2.2:5000`, dispositivo físico: IP local)
 
 ### Screenshots
-**Favoritos**
+#### Favoritos
 ![Action Favoritos](screenshotsGGAJ/Action/Action1.jpeg)
 
-**Historial**
+#### Historial
 ![Action Historial](screenshotsGGAJ/Action/Action2.jpeg)
 
-**Detalles de libro**
+#### Detalles de libro
 ![Action Details](screenshotsGGAJ/Action/Action3.jpeg)
 ---
 
@@ -56,7 +56,7 @@ La aplicación **Biblioteca Digital** es una solución completa de gestión de l
 - Permisos de ubicación otorgados en tiempo de ejecución
 
 ### Screenshots
-**Main**
+#### Main
 ![Examen Main](screenshotsGGAJ/Examen/Examen.jpeg)
 
 ---
@@ -87,13 +87,13 @@ La **Plataforma de Participación Ciudadana** es una aplicación integral para g
 - API Key de Google Maps configurada en `AndroidManifest.xml`
 
 ### Screenshots
-**Mapa Main**
+#### Mapa Main
 ![Project Main](screenshotsGGAJ/Project/Project1.jpeg)
 
-**Formulario de Reporte**
+#### Formulario de Reporte
 ![Formulario de Reporte](screenshotsGGAJ/Project/Project2.jpeg)
 
-**Directorio de Instituciones**
+#### Directorio de Instituciones
 ![Directorio de Instituciones](screenshotsGGAJ/Project/Project3.jpeg)
 
 ---
@@ -110,25 +110,25 @@ Una implementación moderna del clásico juego Buscaminas para **dos jugadores**
   - Validación de turnos por dispositivo
 
 ### Screenshots
-**Buscaminas Main**
+#### Buscaminas Main
 ![Buscaminas Main](screenshotsGGAJ/Buscaminas/Buscaminas1.jpeg)
 
-**Vista de Partida**
+#### Vista de Partida
 ![Vista de Partida](screenshotsGGAJ/Buscaminas/Buscaminas2.jpeg)
 
-**Vista del Mapa**
+#### Vista del Mapa
 ![Vista del Mapa](screenshotsGGAJ/Buscaminas/Buscaminas3.jpeg)
 
-**Estadísticas**
+#### Estadísticas
 ![Estadísticas](screenshotsGGAJ/Buscaminas/Buscaminas4.jpeg)
 
-**Estadísticas P2**
+#### Estadísticas P2
 ![Estadísticas P2](screenshotsGGAJ/Buscaminas/Buscaminas5.jpeg)
 
-**Vista de Partidas Guardadas**
+#### Vista de Partidas Guardadas
 ![Vista de Partidas Guardadas](screenshotsGGAJ/Buscaminas/Buscaminas6.jpeg)
 
-**Vista de Partidas Bluetooth**
+#### Vista de Partidas Bluetooth
 ![Vista de Partidas Bluetooth](screenshotsGGAJ/Buscaminas/Buscaminas7.jpeg)
 
 
@@ -175,34 +175,28 @@ Este proyecto es una aplicación móvil nativa desarrollada en **Android** utili
 
 ### Screenshots
 
-#### Nivel 1 - Vista de Equipos
-
-**San Francisco 49ers**
+#### San Francisco 49ers
 ![49ers Main](screenshotsGGAJ/NFL/MainScreen_49ers.jpg)
 
-**Arizona Cardinals**
+#### Arizona Cardinals 
 ![Cardinals Main](screenshotsGGAJ/NFL/SecondScreen_Cardinals.jpg)
 
-**Los Angeles Rams**
+#### Los Angeles Rams 
 ![Rams Main](screenshotsGGAJ/NFL/ThirdScreen_Rams.jpg)
 
-**Seattle Seahawks**
+#### Seattle Seahawks
 ![Seahawks Main](screenshotsGGAJ/NFL/FourthScreen_Seahawks.jpg)
 
-#### Nivel 2 - Información Detallada
-
-**Vista de Información con Pestañas**
+#### Vista de Información con Pestañas
 ![Info Screen](screenshotsGGAJ/NFL/InfoActivity_Tabs.jpg)
 
-#### Nivel 3 - Contenido por Pestañas
-
-**Overview Fragment**
+#### Overview Fragment
 ![Overview](screenshotsGGAJ/NFL/OverviewFragment.jpg)
 
-**Players Fragment**
+#### Players Fragment
 ![Players](screenshotsGGAJ/NFL/PlayersFragment.jpg)
 
-**Statistics Fragment**
+#### Statistics Fragment
 ![Statistics](screenshotsGGAJ/NFL/StatisticsFragment.jpg)
 
 
